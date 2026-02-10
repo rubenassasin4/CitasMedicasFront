@@ -7,7 +7,7 @@ import { Diagnostico, CrearDiagnostico, ActualizarDiagnostico } from '../models/
   providedIn: 'root'
 })
 export class DiagnosticoService {
-  private apiUrl = 'https://localhost:7001/api/diagnosticos';
+  private apiUrl = 'https://localhost:7248/api/diagnosticos';
 
   constructor(private http: HttpClient) { }
 

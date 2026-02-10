@@ -1,0 +1,57 @@
+<div class="container" style="max-width: 600px; margin: 0 auto; padding: 20px;">
+  <h2>{{ titulo }}</h2>
+  
+  <form [formGroup]="form" (ngSubmit)="guardar()">
+    
+    <div style="margin-bottom: 10px;">
+      <label>Nombre:</label>
+      <input type="text" formControlName="nombre" style="display: block; width: 100%; padding: 8px;">
+    </div>
+
+    <div style="margin-bottom: 10px;">
+      <label>Apellidos:</label>
+      <input type="text" formControlName="apellidos" style="display: block; width: 100%; padding: 8px;">
+    </div>
+
+    <div style="margin-bottom: 10px;">
+      <label>Nombre Usuario:</label>
+      <input type="text" formControlName="nombreUsuario" style="display: block; width: 100%; padding: 8px;">
+    </div>
+
+    <div *ngIf="!esEdicion" style="margin-bottom: 10px;">
+      <label>Contraseña:</label>
+      <input type="password" formControlName="clave" style="display: block; width: 100%; padding: 8px;">
+    </div>
+
+    <div style="margin-bottom: 10px;">
+      <label>NSS:</label>
+      <input type="text" formControlName="nss" style="display: block; width: 100%; padding: 8px;">
+    </div>
+
+    <div style="margin-bottom: 10px;">
+      <label>Nº Tarjeta:</label>
+      <input type="text" formControlName="numTarjeta" style="display: block; width: 100%; padding: 8px;">
+    </div>
+
+    <div style="margin-bottom: 10px;">
+      <label>Teléfono:</label>
+      <input type="text" formControlName="telefono" style="display: block; width: 100%; padding: 8px;">
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <label>Dirección:</label>
+      <input type="text" formControlName="direccion" style="display: block; width: 100%; padding: 8px;">
+    </div>
+
+    <button type="submit" [disabled]="form.invalid" 
+            style="padding: 10px 20px; background-color: #28a745; color: white; border: none; cursor: pointer; margin-right: 10px;">
+      Guardar
+    </button>
+    
+    <button type="button" routerLink="/pacientes" 
+            style="padding: 10px 20px; background-color: #6c757d; color: white; border: none; cursor: pointer;">
+      Cancelar
+    </button>
+
+  </form>
+</div>

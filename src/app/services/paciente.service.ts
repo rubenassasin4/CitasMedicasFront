@@ -8,7 +8,7 @@ import { Paciente, RegistrarPaciente, ActualizarPaciente } from '../models/inter
 })
 export class PacienteService {
   // Asegúrate de que este puerto (7001) es el correcto de tu Visual Studio
-  private apiUrl = 'https://localhost:7001/api/pacientes'; 
+  private apiUrl = 'https://localhost:7248/api/pacientes'; 
 
   constructor(private http: HttpClient) { }
 

@@ -7,7 +7,7 @@ import { Cita, CrearCita, ActualizarCita } from '../models/interfaces';
   providedIn: 'root'
 })
 export class CitaService {
-  private apiUrl = 'https://localhost:7001/api/citas';
+  private apiUrl = 'https://localhost:7248/api/citas';
 
   constructor(private http: HttpClient) { }
 
