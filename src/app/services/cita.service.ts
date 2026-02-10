@@ -27,7 +27,7 @@ export class CitaService {
     return this.http.put<void>(`${this.apiUrl}/${id}`, cita);
   }
 
-  cancelar(id: number): Observable<void> {
+  eliminar(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

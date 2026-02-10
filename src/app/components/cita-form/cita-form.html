@@ -1,0 +1,48 @@
+<div class="container" style="max-width: 600px; margin: 0 auto; padding: 20px;">
+    <h2>{{ titulo }}</h2>
+
+    <form [formGroup]="form" (ngSubmit)="guardar()">
+
+        <div style="margin-bottom: 10px;">
+            <label>Fecha y Hora:</label>
+            <input type="datetime-local" formControlName="fechaHora" style="display: block; width: 100%; padding: 8px;">
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <label>Motivo:</label>
+            <input type="text" formControlName="motivoCita" style="display: block; width: 100%; padding: 8px;">
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <label>Médico:</label>
+            <select formControlName="medicoId" style="display: block; width: 100%; padding: 8px;">
+                <option value="">-- Seleccione Médico --</option>
+                <option *ngFor="let m of medicos" [value]="m.id">
+                    {{ m.nombre }} {{ m.apellidos }}
+                </option>
+            </select>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label>Paciente:</label>
+            <select formControlName="pacienteId" style="display: block; width: 100%; padding: 8px;">
+                <option value="">-- Seleccione Paciente --</option>
+                <option *ngFor="let p of pacientes" [value]="p.id">
+                    {{ p.nombre }} {{ p.apellidos }}
+                </option>
+            </select>
+            <small *ngIf="esEdicion" style="color: gray;">(El paciente no se puede modificar en edición)</small>
+        </div>
+
+        <button type="submit" [disabled]="form.invalid"
+            style="padding: 10px 20px; background-color: #28a745; color: white; border: none; cursor: pointer; margin-right: 10px;">
+            Guardar
+        </button>
+
+        <button type="button" routerLink="/citas"
+            style="padding: 10px 20px; background-color: #6c757d; color: white; border: none; cursor: pointer;">
+            Cancelar
+        </button>
+
+    </form>
+</div>

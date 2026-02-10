@@ -1,0 +1,49 @@
+<div class="container">
+    <h2>Listado de Citas</h2>
+
+    <div style="margin-bottom: 15px;">
+        <button routerLink="/citas/nuevo"
+            style="padding: 10px; background-color: #007bff; color: white; border: none; cursor: pointer;">
+            + Nueva Cita
+        </button>
+    </div>
+
+    <div *ngIf="cargando" class="loading">Cargando datos...</div>
+    <div *ngIf="error" style="color: red; margin-bottom: 10px;">{{ error }}</div>
+
+    <table *ngIf="!cargando && citas.length > 0" border="1" style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="padding: 8px;">ID</th>
+                <th style="padding: 8px;">Fecha y Hora</th>
+                <th style="padding: 8px;">Motivo</th>
+                <th style="padding: 8px;">Médico</th>
+                <th style="padding: 8px;">Paciente</th>
+                <th style="padding: 8px;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cita of citas">
+                <td style="padding: 8px; text-align: center;">{{ cita.id }}</td>
+                <td style="padding: 8px;">{{ cita.fechaHora | date:'medium' }}</td>
+                <td style="padding: 8px;">{{ cita.motivoCita }}</td>
+                <td style="padding: 8px;">{{ cita.nombreMedico }}</td>
+                <td style="padding: 8px;">{{ cita.nombrePaciente }}</td>
+                <td style="padding: 8px; text-align: center;">
+                    <button [routerLink]="['/citas/editar', cita.id]" style="margin-right: 5px; cursor: pointer;">
+                        Editar
+                    </button>
+
+                    <button (click)="eliminar(cita.id)"
+                        style="background-color: #dc3545; color: white; border: none; cursor: pointer;">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div *ngIf="!cargando && !error && citas.length === 0">
+        <p>No hay citas registradas en el sistema.</p>
+    </div>
+</div>
