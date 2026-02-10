@@ -1,48 +1,47 @@
 <div class="container">
-    <h2>Listado de Diagnósticos</h2>
-
-    <div style="margin-bottom: 15px;">
-        <button routerLink="/diagnosticos/nuevo"
-            style="padding: 10px; background-color: #007bff; color: white; border: none; cursor: pointer;">
+    <div class="header-actions">
+        <h2>Listado de Diagnósticos</h2>
+        <button routerLink="/diagnosticos/nuevo" class="btn btn-primary">
             + Nuevo Diagnóstico
         </button>
     </div>
 
     <div *ngIf="cargando" class="loading">Cargando datos...</div>
-    <div *ngIf="error" style="color: red; margin-bottom: 10px;">{{ error }}</div>
+    <div *ngIf="error" class="error-msg">{{ error }}</div>
 
-    <table *ngIf="!cargando && diagnosticos.length > 0" border="1" style="width: 100%; border-collapse: collapse;">
-        <thead>
-            <tr style="background-color: #f2f2f2;">
-                <th style="padding: 8px;">ID</th>
-                <th style="padding: 8px;">Valoración</th>
-                <th style="padding: 8px;">Enfermedad</th>
-                <th style="padding: 8px;">ID Cita</th>
-                <th style="padding: 8px;">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let diag of diagnosticos">
-                <td style="padding: 8px; text-align: center;">{{ diag.id }}</td>
-                <td style="padding: 8px;">{{ diag.valoracionEspecialista }}</td>
-                <td style="padding: 8px;">{{ diag.enfermedad }}</td>
-                <td style="padding: 8px; text-align: center;">{{ diag.citaId }}</td>
-                <td style="padding: 8px; text-align: center;">
-                    <button [routerLink]="['/diagnosticos/editar', diag.id]"
-                        style="margin-right: 5px; cursor: pointer;">
-                        Editar
-                    </button>
+    <div class="table-container" *ngIf="!cargando && diagnosticos.length > 0">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Valoración</th>
+                    <th>Enfermedad</th>
+                    <th style="text-align: center;">ID Cita</th>
+                    <th style="text-align: center;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let diag of diagnosticos">
+                    <td>{{ diag.id }}</td>
+                    <td>{{ diag.valoracionEspecialista }}</td>
+                    <td>{{ diag.enfermedad }}</td>
+                    <td style="text-align: center;">{{ diag.citaId }}</td>
+                    <td style="text-align: center;">
+                        <button [routerLink]="['/diagnosticos/editar', diag.id]" class="btn btn-secondary-outline"
+                            style="margin-right: 5px;">
+                            Editar
+                        </button>
 
-                    <button (click)="eliminar(diag.id)"
-                        style="background-color: #dc3545; color: white; border: none; cursor: pointer;">
-                        Eliminar
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                        <button (click)="eliminar(diag.id)" class="btn btn-danger">
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    <div *ngIf="!cargando && !error && diagnosticos.length === 0">
+    <div *ngIf="!cargando && !error && diagnosticos.length === 0" class="card">
         <p>No hay diagnósticos registrados en el sistema.</p>
     </div>
 </div>

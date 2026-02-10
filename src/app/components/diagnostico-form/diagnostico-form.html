@@ -1,34 +1,37 @@
-<div class="container" style="max-width: 600px; margin: 0 auto; padding: 20px;">
-    <h2>{{ titulo }}</h2>
+<div class="container" style="max-width: 800px;">
+    <div class="card">
+        <h2>{{ titulo }}</h2>
 
-    <form [formGroup]="form" (ngSubmit)="guardar()">
+        <form [formGroup]="form" (ngSubmit)="guardar()">
 
-        <div style="margin-bottom: 10px;">
-            <label>Valoración Especialista:</label>
-            <textarea formControlName="valoracionEspecialista" rows="3"
-                style="display: block; width: 100%; padding: 8px;"></textarea>
-        </div>
+            <div class="form-group">
+                <label>Valoración Especialista:</label>
+                <textarea formControlName="valoracionEspecialista" rows="3"></textarea>
+            </div>
 
-        <div style="margin-bottom: 10px;">
-            <label>Enfermedad:</label>
-            <input type="text" formControlName="enfermedad" style="display: block; width: 100%; padding: 8px;">
-        </div>
+            <div class="form-group">
+                <label>Enfermedad:</label>
+                <input type="text" formControlName="enfermedad">
+            </div>
 
-        <div style="margin-bottom: 20px;">
-            <label>ID Cita:</label>
-            <input type="number" formControlName="citaId" style="display: block; width: 100%; padding: 8px;">
-            <small *ngIf="esEdicion" style="color: gray;">(El ID de Cita no se puede modificar en edición)</small>
-        </div>
+            <div class="form-group">
+                <label>ID Cita:</label>
+                <input type="number" formControlName="citaId">
+                <small *ngIf="esEdicion" style="color: gray; display: block; margin-top: 5px;">
+                    (El ID de Cita no se puede modificar en edición)
+                </small>
+            </div>
 
-        <button type="submit" [disabled]="form.invalid"
-            style="padding: 10px 20px; background-color: #28a745; color: white; border: none; cursor: pointer; margin-right: 10px;">
-            Guardar
-        </button>
+            <div class="form-actions">
+                <button type="submit" [disabled]="form.invalid" class="btn btn-primary">
+                    Guardar
+                </button>
 
-        <button type="button" routerLink="/diagnosticos"
-            style="padding: 10px 20px; background-color: #6c757d; color: white; border: none; cursor: pointer;">
-            Cancelar
-        </button>
+                <button type="button" routerLink="/diagnosticos" class="btn btn-secondary">
+                    Cancelar
+                </button>
+            </div>
 
-    </form>
+        </form>
+    </div>
 </div>

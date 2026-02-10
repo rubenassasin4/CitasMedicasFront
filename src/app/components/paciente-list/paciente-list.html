@@ -1,48 +1,47 @@
 <div class="container">
-  <h2>Listado de Pacientes</h2>
-
-  <div style="margin-bottom: 15px;">
-    <button routerLink="/pacientes/nuevo" 
-            style="padding: 10px; background-color: #007bff; color: white; border: none; cursor: pointer;">
+  <div class="header-actions">
+    <h2>Listado de Pacientes</h2>
+    <button routerLink="/pacientes/nuevo" class="btn btn-primary">
       + Nuevo Paciente
     </button>
   </div>
 
   <div *ngIf="cargando" class="loading">Cargando datos...</div>
-  <div *ngIf="error" style="color: red; margin-bottom: 10px;">{{ error }}</div>
+  <div *ngIf="error" class="error-msg">{{ error }}</div>
 
-  <table *ngIf="!cargando && pacientes.length > 0" border="1" style="width: 100%; border-collapse: collapse;">
-    <thead>
-      <tr style="background-color: #f2f2f2;">
-        <th style="padding: 8px;">ID</th>
-        <th style="padding: 8px;">Nombre Completo</th>
-        <th style="padding: 8px;">NSS</th>
-        <th style="padding: 8px;">Teléfono</th>
-        <th style="padding: 8px;">Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let paciente of pacientes">
-        <td style="padding: 8px; text-align: center;">{{ paciente.id }}</td>
-        <td style="padding: 8px;">{{ paciente.nombre }} {{ paciente.apellidos }}</td>
-        <td style="padding: 8px;">{{ paciente.nss }}</td>
-        <td style="padding: 8px;">{{ paciente.telefono }}</td>
-        <td style="padding: 8px; text-align: center;">
-          <button [routerLink]="['/pacientes/editar', paciente.id]" 
-                  style="margin-right: 5px; cursor: pointer;">
-            Editar
-          </button>
-          
-          <button (click)="eliminar(paciente.id)" 
-                  style="background-color: #dc3545; color: white; border: none; cursor: pointer;">
-            Eliminar
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-container" *ngIf="!cargando && pacientes.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre Completo</th>
+          <th>NSS</th>
+          <th>Teléfono</th>
+          <th style="text-align: center;">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let paciente of pacientes">
+          <td>{{ paciente.id }}</td>
+          <td>{{ paciente.nombre }} {{ paciente.apellidos }}</td>
+          <td>{{ paciente.nss }}</td>
+          <td>{{ paciente.telefono }}</td>
+          <td style="text-align: center;">
+            <button [routerLink]="['/pacientes/editar', paciente.id]" class="btn btn-secondary-outline"
+              style="margin-right: 5px;">
+              Editar
+            </button>
 
-  <div *ngIf="!cargando && !error && pacientes.length === 0">
+            <button (click)="eliminar(paciente.id)" class="btn btn-danger">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="!cargando && !error && pacientes.length === 0" class="card">
     <p>No hay pacientes registrados en el sistema.</p>
   </div>
 </div>

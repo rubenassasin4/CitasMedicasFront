@@ -1,15 +1,19 @@
-<div style="padding: 20px; font-family: sans-serif;">
-  <h1>{{ title() }}</h1>
-  
-  <nav style="margin-bottom: 20px;">
-    <a routerLink="/pacientes" style="margin-right: 15px; font-weight: bold; cursor: pointer; color: blue;">
-      Pacientes
-    </a>
-    
-    <span style="color: gray;"> | Médicos (Pronto) | Citas (Pronto)</span>
-  </nav>
+<div class="app-container">
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="navbar-brand">
+      <span class="brand-text">🏥 Citas Médicas</span>
+    </div>
+    <nav class="navbar-menu">
+      <a routerLink="/pacientes" routerLinkActive="active" class="nav-link">Pacientes</a>
+      <a routerLink="/medicos" routerLinkActive="active" class="nav-link">Médicos</a>
+      <a routerLink="/citas" routerLinkActive="active" class="nav-link">Citas</a>
+      <a routerLink="/diagnosticos" routerLinkActive="active" class="nav-link">Diagnósticos</a>
+    </nav>
+  </header>
 
-  <hr>
-
-  <router-outlet></router-outlet>
+  <!-- Main Content -->
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
 </div>

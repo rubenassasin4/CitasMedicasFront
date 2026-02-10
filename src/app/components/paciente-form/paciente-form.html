@@ -1,57 +1,59 @@
-<div class="container" style="max-width: 600px; margin: 0 auto; padding: 20px;">
-  <h2>{{ titulo }}</h2>
-  
-  <form [formGroup]="form" (ngSubmit)="guardar()">
-    
-    <div style="margin-bottom: 10px;">
-      <label>Nombre:</label>
-      <input type="text" formControlName="nombre" style="display: block; width: 100%; padding: 8px;">
-    </div>
+<div class="container" style="max-width: 800px;">
+  <div class="card">
+    <h2>{{ titulo }}</h2>
 
-    <div style="margin-bottom: 10px;">
-      <label>Apellidos:</label>
-      <input type="text" formControlName="apellidos" style="display: block; width: 100%; padding: 8px;">
-    </div>
+    <form [formGroup]="form" (ngSubmit)="guardar()">
 
-    <div style="margin-bottom: 10px;">
-      <label>Nombre Usuario:</label>
-      <input type="text" formControlName="nombreUsuario" style="display: block; width: 100%; padding: 8px;">
-    </div>
+      <div class="form-group">
+        <label>Nombre:</label>
+        <input type="text" formControlName="nombre">
+      </div>
 
-    <div *ngIf="!esEdicion" style="margin-bottom: 10px;">
-      <label>Contraseña:</label>
-      <input type="password" formControlName="clave" style="display: block; width: 100%; padding: 8px;">
-    </div>
+      <div class="form-group">
+        <label>Apellidos:</label>
+        <input type="text" formControlName="apellidos">
+      </div>
 
-    <div style="margin-bottom: 10px;">
-      <label>NSS:</label>
-      <input type="text" formControlName="nss" style="display: block; width: 100%; padding: 8px;">
-    </div>
+      <div class="form-group">
+        <label>Nombre Usuario:</label>
+        <input type="text" formControlName="nombreUsuario">
+      </div>
 
-    <div style="margin-bottom: 10px;">
-      <label>Nº Tarjeta:</label>
-      <input type="text" formControlName="numTarjeta" style="display: block; width: 100%; padding: 8px;">
-    </div>
+      <div *ngIf="!esEdicion" class="form-group">
+        <label>Contraseña:</label>
+        <input type="password" formControlName="clave">
+      </div>
 
-    <div style="margin-bottom: 10px;">
-      <label>Teléfono:</label>
-      <input type="text" formControlName="telefono" style="display: block; width: 100%; padding: 8px;">
-    </div>
+      <div class="form-group">
+        <label>NSS:</label>
+        <input type="text" formControlName="nss">
+      </div>
 
-    <div style="margin-bottom: 20px;">
-      <label>Dirección:</label>
-      <input type="text" formControlName="direccion" style="display: block; width: 100%; padding: 8px;">
-    </div>
+      <div class="form-group">
+        <label>Nº Tarjeta:</label>
+        <input type="text" formControlName="numTarjeta">
+      </div>
 
-    <button type="submit" [disabled]="form.invalid" 
-            style="padding: 10px 20px; background-color: #28a745; color: white; border: none; cursor: pointer; margin-right: 10px;">
-      Guardar
-    </button>
-    
-    <button type="button" routerLink="/pacientes" 
-            style="padding: 10px 20px; background-color: #6c757d; color: white; border: none; cursor: pointer;">
-      Cancelar
-    </button>
+      <div class="form-group">
+        <label>Teléfono:</label>
+        <input type="text" formControlName="telefono">
+      </div>
 
-  </form>
+      <div class="form-group">
+        <label>Dirección:</label>
+        <input type="text" formControlName="direccion">
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" [disabled]="form.invalid" class="btn btn-primary">
+          Guardar
+        </button>
+
+        <button type="button" routerLink="/pacientes" class="btn btn-secondary">
+          Cancelar
+        </button>
+      </div>
+
+    </form>
+  </div>
 </div>
