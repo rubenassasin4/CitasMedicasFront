@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DiagnosticoService } from '../../services/diagnostico.service';
@@ -17,7 +17,10 @@ export class DiagnosticoListComponent implements OnInit {
     cargando: boolean = true;
     error: string = '';
 
-    constructor(private diagnosticoService: DiagnosticoService) { }
+    constructor(
+        private diagnosticoService: DiagnosticoService,
+        private cdr: ChangeDetectorRef
+    ) { }
 
     ngOnInit(): void {
         this.cargarDiagnosticos();
@@ -29,11 +32,13 @@ export class DiagnosticoListComponent implements OnInit {
             next: (datos) => {
                 this.diagnosticos = datos;
                 this.cargando = false;
+                this.cdr.detectChanges(); // Forzar actualización de vista
             },
             error: (e) => {
                 console.error('Error al cargar diagnósticos:', e);
                 this.error = 'No se pudieron cargar los datos.';
                 this.cargando = false;
+                this.cdr.detectChanges(); // Forzar actualización de vista
             }
         });
     }
@@ -44,7 +49,10 @@ export class DiagnosticoListComponent implements OnInit {
                 next: () => {
                     this.cargarDiagnosticos();
                 },
-                error: (e) => alert('Error al eliminar el diagnóstico')
+                error: (e) => {
+                    alert('Error al eliminar el diagnóstico');
+                    this.cdr.detectChanges();
+                }
             });
         }
     }

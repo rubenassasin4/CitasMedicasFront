@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CitaService } from '../../services/cita.service';
@@ -17,7 +17,10 @@ export class CitaListComponent implements OnInit {
     cargando: boolean = true;
     error: string = '';
 
-    constructor(private citaService: CitaService) { }
+    constructor(
+        private citaService: CitaService,
+        private cdr: ChangeDetectorRef
+    ) { }
 
     ngOnInit(): void {
         this.cargarCitas();
@@ -29,11 +32,13 @@ export class CitaListComponent implements OnInit {
             next: (datos) => {
                 this.citas = datos;
                 this.cargando = false;
+                this.cdr.detectChanges(); // Forzar actualización de vista
             },
             error: (e) => {
                 console.error('Error al cargar citas:', e);
                 this.error = 'No se pudieron cargar los datos.';
                 this.cargando = false;
+                this.cdr.detectChanges(); // Forzar actualización de vista
             }
         });
     }
@@ -44,7 +49,10 @@ export class CitaListComponent implements OnInit {
                 next: () => {
                     this.cargarCitas();
                 },
-                error: (e) => alert('Error al eliminar la cita')
+                error: (e) => {
+                    alert('Error al eliminar la cita');
+                    this.cdr.detectChanges();
+                }
             });
         }
     }

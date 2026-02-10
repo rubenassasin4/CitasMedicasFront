@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MedicoService } from '../../services/medico.service';
@@ -17,7 +17,10 @@ export class MedicoListComponent implements OnInit {
     cargando: boolean = true;
     error: string = '';
 
-    constructor(private medicoService: MedicoService) { }
+    constructor(
+        private medicoService: MedicoService,
+        private cdr: ChangeDetectorRef
+    ) { }
 
     ngOnInit(): void {
         this.cargarMedicos();
@@ -29,11 +32,13 @@ export class MedicoListComponent implements OnInit {
             next: (datos) => {
                 this.medicos = datos;
                 this.cargando = false;
+                this.cdr.detectChanges(); // Forzar actualización de vista
             },
             error: (e) => {
                 console.error('Error al cargar médicos:', e);
                 this.error = 'No se pudieron cargar los datos. Revisa que la API esté encendida.';
                 this.cargando = false;
+                this.cdr.detectChanges(); // Forzar actualización de vista
             }
         });
     }
@@ -44,7 +49,10 @@ export class MedicoListComponent implements OnInit {
                 next: () => {
                     this.cargarMedicos();
                 },
-                error: (e) => alert('Error al eliminar el médico')
+                error: (e) => {
+                    alert('Error al eliminar el médico');
+                    this.cdr.detectChanges();
+                }
             });
         }
     }
